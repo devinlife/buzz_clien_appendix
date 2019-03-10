@@ -19,16 +19,16 @@ if __name__ == '__main__':
     
     csvFileData = pd.read_csv(csvFile, index_col=0, header=0)
     
-    x = csvFileData["post_reply"]
-    print("# x describe - 댓글수 ##########")
+    x = csvFileData["post_view"]
+    print("# x describe - 조회수 ##########")
     print(x.describe())
 
-    y = csvFileData["post_symph"]
-    print("# y describe - 공감수 ##########")
+    y = csvFileData["post_reply"]
+    print("# y describe - 댓글수 ##########")
     print(y.describe())
     
-    z = csvFileData["post_view"]
-    print("# z describe - 조회수 ##########")
+    z = csvFileData["post_symph"]
+    print("# z describe - 공감수 ##########")
     print(z.describe())
 
     sys.exit()

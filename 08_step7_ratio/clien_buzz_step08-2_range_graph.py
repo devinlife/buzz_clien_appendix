@@ -13,6 +13,7 @@ if __name__ == '__main__':
 
     csvFile = (sys.argv[1])
     saveFile= '02_result_w_range.html'
+    titleName= '조회수/댓글수/공감수 3D scatter 그래프(range 설정)'
    
     if not os.path.isfile(csvFile):
         print("File %s is not exist." % csvFile)
@@ -20,9 +21,9 @@ if __name__ == '__main__':
     
     csvFileData = pd.read_csv(csvFile, index_col=0, header=0)
     
-    x = csvFileData["post_reply"].values.tolist()
-    y = csvFileData["post_symph"].values.tolist()
-    z = csvFileData["post_view"].values.tolist()
+    x = csvFileData["post_view"].values.tolist()
+    y = csvFileData["post_reply"].values.tolist()
+    z = csvFileData["post_symph"].values.tolist()
 
     traces = go.Scatter3d(
         x=x,
@@ -40,20 +41,15 @@ if __name__ == '__main__':
 
     data = [traces]
     layout = go.Layout(
+        title=titleName,
         scene = dict(
         xaxis=dict(
-            title='X축 댓글수', range=[0,100],),
+            title='X축 조회수', range=[0,10000],),
         yaxis=dict(
-            title='Y축 공감수', range=[0,100],),
+            title='Y축 댓글수', range=[0,100],),
         zaxis=dict(
-            title='Z축 조회수', range=[0,10000],),
+            title='Z축 공감수', range=[0,100],),
         ),
-        margin=dict(
-            l=0,
-            r=0,
-            b=0,
-            t=0
-        )
     )
 
     fig = go.Figure(data=data, layout=layout)
